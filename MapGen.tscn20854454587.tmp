@@ -1,0 +1,111 @@
+[gd_scene load_steps=21 format=3 uid="uid://b53ixrhx0cll3"]
+
+[ext_resource type="Script" uid="uid://cbi5v8n01esge" path="res://otpar.gd" id="1_314uk"]
+[ext_resource type="Script" uid="uid://w2od1px8hvot" path="res://camera_2d.gd" id="1_dsf50"]
+[ext_resource type="Texture2D" uid="uid://cc4wcktntnrlk" path="res://TileMap/grasssss.png" id="1_i88iq"]
+[ext_resource type="Texture2D" uid="uid://cwelu8xf32nxh" path="res://TileMap/sanddddd.png" id="2_t80lc"]
+[ext_resource type="Texture2D" uid="uid://owjgb5majipv" path="res://TileMap/waterrrrr.png" id="3_dsf50"]
+[ext_resource type="Texture2D" uid="uid://dir58736v5eev" path="res://TileMap/grassss.png" id="3_g4ngw"]
+[ext_resource type="Texture2D" uid="uid://bq8ssm7ykhft2" path="res://TileMap/New Piskel (7).png" id="5_dksct"]
+[ext_resource type="Texture2D" uid="uid://whpife4cbvoq" path="res://TileMap/New Piskel (10).png" id="6_dksct"]
+[ext_resource type="Texture2D" uid="uid://dl8nxq3f75ot1" path="res://TileMap/New Piskel (9).png" id="7_314uk"]
+[ext_resource type="Script" uid="uid://dn85crmgvhq8j" path="res://mapgen.gd" id="8_c1g66"]
+[ext_resource type="Script" uid="uid://danklb5prq66r" path="res://button.gd" id="10_dksct"]
+[ext_resource type="Script" uid="uid://c1cxjxh3hp5in" path="res://button_2.gd" id="11_g4ngw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_314uk"]
+texture = ExtResource("3_g4ngw")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t80lc"]
+texture = ExtResource("2_t80lc")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkljm"]
+texture = ExtResource("5_dksct")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5471"]
+texture = ExtResource("6_dksct")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c1g66"]
+texture = ExtResource("7_314uk")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dsf50"]
+texture = ExtResource("3_dsf50")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i88iq"]
+texture = ExtResource("1_i88iq")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dksct"]
+tile_size = Vector2i(32, 32)
+sources/5 = SubResource("TileSetAtlasSource_dsf50")
+sources/1 = SubResource("TileSetAtlasSource_t80lc")
+sources/2 = SubResource("TileSetAtlasSource_bkljm")
+sources/3 = SubResource("TileSetAtlasSource_r5471")
+sources/4 = SubResource("TileSetAtlasSource_c1g66")
+sources/7 = SubResource("TileSetAtlasSource_i88iq")
+sources/0 = SubResource("TileSetAtlasSource_314uk")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_314uk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -157.0
+offset_top = 1.00003
+offset_right = -4.0
+offset_bottom = 83.0
+grow_horizontal = 0
+
+[node name="Button2" type="Button" parent="CanvasLayer/Panel" node_paths=PackedStringArray("world_generator")]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 11.9999
+offset_right = 109.0
+offset_bottom = 42.9999
+scale = Vector2(0.68, 0.96113)
+text = "ReGenerate"
+script = ExtResource("11_g4ngw")
+world_generator = NodePath("../../../TileMap")
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel" node_paths=PackedStringArray("tilemap")]
+visible = false
+layout_mode = 0
+offset_left = 81.0
+offset_top = 11.9999
+offset_right = 176.0
+offset_bottom = 42.9999
+scale = Vector2(0.68, 0.96113)
+text = "SaveMap
+"
+script = ExtResource("10_dksct")
+tilemap = NodePath("../../../TileMap")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(152, 53)
+scale = Vector2(1, 0.719555)
+tile_set = SubResource("TileSet_dksct")
+format = 2
+script = ExtResource("8_c1g66")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-0.999939, -1.00002)
+scale = Vector2(1, 1)
+anchor_mode = 0
+script = ExtResource("1_dsf50")
