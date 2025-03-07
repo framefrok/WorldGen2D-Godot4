@@ -1,2 +1,2 @@
 # WorldGenGodot4
-Godot 4 World Generator
+Genartor 2d world in Godot Engine 4
